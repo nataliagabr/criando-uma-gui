@@ -2,35 +2,27 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    private Transform player;
-    private Vector3 offset;
+    private Transform target;
 
-    private void Start()
+    public Vector3 offset = new Vector3(0, 8, -8);
+
+    void LateUpdate()
     {
-        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
-
-        if (playerObject != null)
+        if(target == null)
         {
-            player = playerObject.transform;
-            offset = transform.position - player.position;
-        }
-    }
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
 
-    private void LateUpdate()
-    {
-        if (player == null)
-        {
-            GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
-
-            if (playerObject != null)
+            if(player != null)
             {
-                player = playerObject.transform;
-                offset = transform.position - player.position;
+                target = player.transform;
             }
-
-            return;
+            else
+            {
+                return;
+            }
         }
 
-        transform.position = player.position + offset;
+        transform.position = target.position + offset;
+        transform.LookAt(target);
     }
 }
