@@ -6,11 +6,25 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
+        if (Input.GetKey(KeyCode.W))
+        {
+            transform.position += Vector3.forward * speed * Time.deltaTime;
+        }
 
-        Vector3 move = new Vector3(h, 0, v);
+        if (Input.GetKey(KeyCode.S))
+        {
+            transform.position += Vector3.back * speed * Time.deltaTime;
+        }
 
-        transform.Translate(move * speed * Time.deltaTime);
+        if (Input.GetKey(KeyCode.A))
+        {
+            transform.position += Vector3.left * speed * Time.deltaTime;
+        }
+
+        if (Input.GetKey(KeyCode.D))
+        {
+            transform.position += Vector3.right * speed * Time.deltaTime;
+        }
     }
 }
+

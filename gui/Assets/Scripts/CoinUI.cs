@@ -5,7 +5,7 @@ public class CoinUI : MonoBehaviour
 {
     public TextMeshProUGUI coinText;
 
-    private int totalCoins = 0;
+    private int totalCoins;
 
     private void OnEnable()
     {
